@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
-import UserLayout from "./layout/UserLayout";
+import UserLayout from "./layout/Userlayout";
 import Protected from "./component/Protectedroutes";
 import Userdashboard from "./pages/Userdashboard";
-import Usertasks from "./pages/usertask";
+import Usertasks from "./pages/Usertask";
 import AdminLayout from "./layout/Adminlayout";
 import AdminDashboard from "./pages/AdminDashboard";
 import AllProject from "./pages/AllProject";
