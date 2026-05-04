@@ -1,0 +1,110 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+export default function UserDashboard() {
+  const [stats, setStats] = useState(null);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/user/dashboard", {
+      withCredentials: true
+    })
+    .then((res) => {
+      setStats(res.data.stats);
+      setTasks(res.data.tasks); // 🔥 tasks bhi le liye
+    })
+    .catch((err) => console.log(err));
+  }, []);
+
+  if (!stats) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-black text-gray-400">
+        Loading dashboard...
+      </div>
+    );
+  }
+
+  // 🔥 Recent 5 tasks
+  const recentTasks = tasks
+    .slice(0, 5);
+
+  return (
+    <div className="p-6 bg-black min-h-screen text-white">
+
+      <h1 className="text-2xl font-semibold mb-6">Dashboard</h1>
+
+      {/* 🔥 Stats Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+
+        <StatCard title="Total Tasks" value={stats.total} color="purple" />
+        <StatCard title="Pending" value={stats.pending} color="yellow" />
+        <StatCard title="Completed" value={stats.completed} color="green" />
+        <StatCard title="Overdue" value={stats.overdue} color="red" />
+
+      </div>
+
+      {/* 🔥 Recent Tasks Section */}
+      <div className="mt-6 bg-[#111] border border-gray-800 rounded-2xl p-5">
+        <h2 className="text-lg font-semibold mb-4">Recent Tasks</h2>
+
+        {recentTasks.length === 0 ? (
+          <p className="text-gray-400 text-sm">No tasks yet</p>
+        ) : (
+          <div className="space-y-3">
+            {recentTasks.map((task) => (
+              <div
+                key={task._id}
+                className="flex justify-between items-center bg-[#0d0d0d] p-3 rounded-lg border border-gray-800"
+              >
+
+                <div>
+                  <p className="text-sm font-medium">{task.title}</p>
+                  <p className="text-xs text-gray-400">
+                    {task.projectId?.name}
+                  </p>
+                </div>
+
+                <span className={`text-xs px-2 py-1 rounded ${getStatusColor(task.status)}`}>
+                  {task.status}
+                </span>
+
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+    </div>
+  );
+}
+
+/* 🔥 Card */
+function StatCard({ title, value, color }) {
+  const colors = {
+    purple: "from-purple-600 to-indigo-600",
+    yellow: "from-yellow-500 to-orange-500",
+    green: "from-green-500 to-emerald-600",
+    red: "from-red-500 to-pink-600"
+  };
+
+  return (
+    <div className={`p-5 rounded-2xl bg-gradient-to-r ${colors[color]} shadow-lg`}>
+      <p className="text-sm text-white/80">{title}</p>
+      <h2 className="text-2xl font-bold mt-1">{value}</h2>
+    </div>
+  );
+}
+
+/* 🔥 Status Color */
+function getStatusColor(status) {
+  switch (status) {
+    case "pending":
+      return "bg-yellow-500/20 text-yellow-400";
+    case "completed":
+      return "bg-green-500/20 text-green-400";
+    case "overdue":
+      return "bg-red-500/20 text-red-400";
+    default:
+      return "bg-gray-500/20 text-gray-400";
+  }
+}
