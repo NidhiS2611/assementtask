@@ -10,7 +10,7 @@ const cookies = require('cookie-parser');
 app.use(cookies());
 
 app.use(cors({
-    origin: 'https://terrific-benevolence-production-21ee.up.railway.app',
+    origin: 'https://spirited-trust-production-bdc1.up.railway.app',
     credentials: true
 }));
 app.use(express.json());
