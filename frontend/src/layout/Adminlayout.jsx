@@ -12,7 +12,7 @@ const Adminlayout = () => {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/user/me", {
+    axios.get("https://terrific-benevolence-production-21ee.up.railway.app/user/me", {
       withCredentials: true
     })
     .then((res) => {

@@ -6,7 +6,7 @@ export default function UserDashboard() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/user/dashboard", {
+    axios.get("https://terrific-benevolence-production-21ee.up.railway.app/user/dashboard", {
       withCredentials: true
     })
     .then((res) => {

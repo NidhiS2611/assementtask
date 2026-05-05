@@ -10,7 +10,7 @@ export default function Usertasks() {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/task/list", {
+      const res = await axios.get("https://terrific-benevolence-production-21ee.up.railway.app/task/list", {
         withCredentials: true
       });
       setTasks(res.data);
@@ -23,7 +23,7 @@ export default function Usertasks() {
   const markComplete = async (id) => {
     try {
       await axios.put(
-        `http://localhost:3000/task/update/${id}`,
+        `https://terrific-benevolence-production-21ee.up.railway.app/task/update/${id}`,
         { status: "completed" },
         { withCredentials: true }
       );

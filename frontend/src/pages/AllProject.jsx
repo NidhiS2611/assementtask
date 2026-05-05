@@ -11,7 +11,7 @@ export default function AllProjects() {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/project/list", {
+      const res = await axios.get("https://terrific-benevolence-production-21ee.up.railway.app/project/list", {
         withCredentials: true
       });
       setProjects(res.data);
@@ -23,7 +23,7 @@ export default function AllProjects() {
   // 🔥 DELETE FUNCTION
   const deleteProject = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/project/delete/${id}`, {
+      await axios.delete(`https://terrific-benevolence-production-21ee.up.railway.app/project/delete/${id}`, {
         withCredentials: true
       });
 

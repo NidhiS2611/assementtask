@@ -21,7 +21,7 @@ export default function Settings() {
 
     try {
       const res = await axios.put(
-        "http://localhost:3000/user/update",
+        "https://terrific-benevolence-production-21ee.up.railway.app/user/update",
         form,
         { withCredentials: true }
       );

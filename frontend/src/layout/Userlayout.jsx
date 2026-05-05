@@ -11,7 +11,7 @@ const Userlayout = () => {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/user/me", { withCredentials: true })
+    axios.get("https://terrific-benevolence-production-21ee.up.railway.app/user/me", { withCredentials: true })
       .then((res) => setUserName(res.data.user.name))
       .catch((err) => console.log("User fetch error:", err));
   }, []);

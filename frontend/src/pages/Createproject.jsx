@@ -22,7 +22,7 @@ export default function Createproject() {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/project/create",
+        "https://terrific-benevolence-production-21ee.up.railway.app/project/create",
         form,
         { withCredentials: true }
       );

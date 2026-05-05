@@ -5,7 +5,7 @@ export default function AdminDashboard() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/user/admin/dashboard", {
+    axios.get("https://terrific-benevolence-production-21ee.up.railway.app/user/admin/dashboard", {
       withCredentials: true
     })
     .then((res) => setData(res.data))

@@ -27,7 +27,7 @@ export default function Signup() {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/user/register",
+        "https://terrific-benevolence-production-21ee.up.railway.app/user/register",
         form,
         { withCredentials: true }
       );

@@ -13,7 +13,7 @@ const Navbar = ({ userName, toggleSidebar }) => {
   };
 
   const logouthandler = () => {
-    const res = axios.post("http://localhost:3000/user/logout", {}, { withCredentials: true });
+    const res = axios.post("https://terrific-benevolence-production-21ee.up.railway.app/user/logout", {}, { withCredentials: true });
     res.then(() => {
       navigate("/login");
     });

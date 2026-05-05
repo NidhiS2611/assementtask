@@ -25,11 +25,11 @@ export default function CreateTask() {
 
   const fetchData = async () => {
     try {
-      const userRes = await axios.get("http://localhost:3000/user/allusers", {
+      const userRes = await axios.get("https://terrific-benevolence-production-21ee.up.railway.app/user/allusers", {
         withCredentials: true
       });
 
-      const projRes = await axios.get("http://localhost:3000/project/list", {
+      const projRes = await axios.get("https://terrific-benevolence-production-21ee.up.railway.app/project/list", {
         withCredentials: true
       });
 
@@ -52,7 +52,7 @@ export default function CreateTask() {
 
     try {
       await axios.post(
-        "http://localhost:3000/task/create",
+        "https://terrific-benevolence-production-21ee.up.railway.app/task/create",
         form,
         { withCredentials: true }
       );

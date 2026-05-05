@@ -25,7 +25,7 @@ export default function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/user/login",
+        "https://terrific-benevolence-production-21ee.up.railway.app/user/login",
         form,
         { withCredentials: true }
       );
