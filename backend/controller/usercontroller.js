@@ -18,7 +18,12 @@ const createUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new user({ name, email, password: hashedPassword, role });
         const token = generateToken(newUser._id);
-        res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === "production" });
+        res.cookie("token", token, {
+    httpOnly: true,
+    secure: true, // Railway par HTTPS hota hai toh hamesha true rakho
+    sameSite: "None", // Ye sabse important hai cross-site cookies ke liye
+    maxAge: 24 * 60 * 60 * 1000 // 1 din ki validity
+});
         await newUser.save();
         res.status(201).json({ message: "User created successfully" });
    
@@ -45,7 +50,13 @@ const login = async (req, res) => {
             return res.status(400).json({ error: "Invalid email or password" });
         }
         const token = generateToken(existingUser._id);
-        res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === "production" });
+
+        res.cookie("token", token, {
+    httpOnly: true,
+    secure: true, // Railway par HTTPS hota hai toh hamesha true rakho
+    sameSite: "None", // Ye sabse important hai cross-site cookies ke liye
+    maxAge: 24 * 60 * 60 * 1000 // 1 din ki validity
+});
         res.json({ message: "Login successful", user:existingUser });
     } catch (err) {
         console.error(err);
