@@ -10,7 +10,7 @@ const cookies = require('cookie-parser');
 app.use(cookies());
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://terrific-benevolence-production-21ee.up.railway.app',
     credentials: true
 }));
 app.use(express.json());
